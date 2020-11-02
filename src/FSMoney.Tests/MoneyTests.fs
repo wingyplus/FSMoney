@@ -5,7 +5,10 @@ open FSMoney
 
 [<Test>]
 let TestCreate () =
-    Assert.AreEqual({ Money.Amount = 200; Money.Currency = "USD" }, Money.create 200 "USD")
+    Assert.AreEqual
+        ({ Money.Amount = 200
+           Money.Currency = "USD" },
+         Money.create 200 "USD")
 
 
 [<Test>]
