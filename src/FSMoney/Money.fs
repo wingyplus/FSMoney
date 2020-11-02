@@ -38,44 +38,44 @@ module Money =
         | 0 -> Eq
         | _ (* 1 *)  -> Gt
 
-    let addFloat m f =
-        { Amount = m.Amount + ((f * 100.0) |> round |> int)
+    let addFloat m v =
+        { Amount = m.Amount + ((v * 100.0) |> round |> int)
           Currency = m.Currency }
 
-    let addInt m n =
-        { Amount = m.Amount + n
+    let addInt m v =
+        { Amount = m.Amount + v
           Currency = m.Currency }
 
-    let add m b =
-        match box b with
+    let add m v =
+        match box v with
         | :? float as f -> addFloat m f
         | :? int as n -> addInt m n
-        | _ -> invalidArg "b" "b must be int or float"
+        | _ -> invalidArg "v" "v must be int or float"
 
-    let subtractFloat m f =
-        { Amount = m.Amount - ((f * 100.0) |> round |> int)
+    let subtractFloat m v =
+        { Amount = m.Amount - ((v * 100.0) |> round |> int)
           Currency = m.Currency }
 
-    let subtractInt m n =
-        { Amount = m.Amount - n
+    let subtractInt m v =
+        { Amount = m.Amount - v
           Currency = m.Currency }
 
-    let subtract m b =
-        match box b with
+    let subtract m v =
+        match box v with
         | :? float as f -> subtractFloat m f
         | :? int as n -> subtractInt m n
-        | _ -> invalidArg "b" "b must be int or float"
+        | _ -> invalidArg "v" "v must be int or float"
 
-    let multiplyInt m n =
-        { Amount = m.Amount * n
+    let multiplyInt m v =
+        { Amount = m.Amount * v
           Currency = m.Currency }
 
-    let multiplyFloat m f =
-        { Amount = (float m.Amount) * f |> round |> int
+    let multiplyFloat m v =
+        { Amount = (float m.Amount) * v |> round |> int
           Currency = m.Currency }
 
-    let multiply m b =
-        match box b with
+    let multiply m v =
+        match box v with
         | :? float as f -> multiplyFloat m f
         | :? int as n -> multiplyInt m n
-        | _ -> invalidArg "b" "b must be int or float"
+        | _ -> invalidArg "v" "v must be int or float"
