@@ -1,11 +1,11 @@
 module FSMoney.Tests
 
 open NUnit.Framework
-open FSMoney.Money
+open FSMoney
 
 [<Test>]
 let TestCreate () =
-    Assert.AreEqual({ Amount = 200; Currency = "USD" }, Money.create 200 "USD")
+    Assert.AreEqual({ Money.Amount = 200; Money.Currency = "USD" }, Money.create 200 "USD")
 
 
 [<Test>]
@@ -61,9 +61,9 @@ let TestEquals () =
 
 [<Test>]
 let TestCmp () =
-    Assert.AreEqual(Eq, Money.cmp (Money.create 100 "USD") (Money.create 100 "USD"))
-    Assert.AreEqual(Lt, Money.cmp (Money.create 10 "USD") (Money.create 100 "USD"))
-    Assert.AreEqual(Gt, Money.cmp (Money.create 100 "USD") (Money.create 10 "USD"))
+    Assert.AreEqual(Money.Eq, Money.cmp (Money.create 100 "USD") (Money.create 100 "USD"))
+    Assert.AreEqual(Money.Lt, Money.cmp (Money.create 10 "USD") (Money.create 100 "USD"))
+    Assert.AreEqual(Money.Gt, Money.cmp (Money.create 100 "USD") (Money.create 10 "USD"))
 
 [<Test>]
 let TestAdd () =
