@@ -68,6 +68,13 @@ let TestCmp () =
     Assert.AreEqual(Money.Lt, Money.cmp (Money.create 10 "USD") (Money.create 100 "USD"))
     Assert.AreEqual(Money.Gt, Money.cmp (Money.create 100 "USD") (Money.create 10 "USD"))
 
+    Assert.Throws
+        (typeof<System.ArgumentException>,
+         TestDelegate(fun () ->
+             Money.cmp (Money.create 100 "USD") (Money.create 10 "THB")
+             |> ignore))
+    |> ignore
+
 [<Test>]
 let TestAdd () =
     Assert.AreEqual(Money.add (Money.create 20 "USD") 30, Money.add (Money.create 30 "USD") 20)
