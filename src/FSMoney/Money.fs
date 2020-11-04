@@ -38,11 +38,11 @@ module Money =
         | 0 -> Eq
         | _ (* 1 *)  -> Gt
 
-    let addFloat m v =
+    let internal addFloat m v =
         { Amount = m.Amount + ((v * 100.0) |> round |> int)
           Currency = m.Currency }
 
-    let addInt m v =
+    let internal addInt m v =
         { Amount = m.Amount + v
           Currency = m.Currency }
 
@@ -52,11 +52,11 @@ module Money =
         | :? int as n -> addInt m n
         | _ -> invalidArg "v" "v must be int or float"
 
-    let subtractFloat m v =
+    let internal subtractFloat m v =
         { Amount = m.Amount - ((v * 100.0) |> round |> int)
           Currency = m.Currency }
 
-    let subtractInt m v =
+    let internal subtractInt m v =
         { Amount = m.Amount - v
           Currency = m.Currency }
 
@@ -66,11 +66,11 @@ module Money =
         | :? int as n -> subtractInt m n
         | _ -> invalidArg "v" "v must be int or float"
 
-    let multiplyInt m v =
+    let internal multiplyInt m v =
         { Amount = m.Amount * v
           Currency = m.Currency }
 
-    let multiplyFloat m v =
+    let internal multiplyFloat m v =
         { Amount = (float m.Amount) * v |> round |> int
           Currency = m.Currency }
 
